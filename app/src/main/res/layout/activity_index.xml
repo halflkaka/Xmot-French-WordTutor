@@ -44,12 +44,13 @@
             android:layout_height="85dp"
             android:src="@drawable/rocketword"
             android:layout_margin="5dp" />
+
         <ImageButton
             android:id="@+id/set_button"
             android:layout_width="wrap_content"
             android:layout_height="85dp"
-            android:src="@drawable/setword"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:src="@drawable/setword" />
     </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
