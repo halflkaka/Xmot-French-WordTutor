@@ -15,42 +15,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
-                android:layout_margin="5dp"
+                android:layout_margin="15dp"
                 android:id="@+id/search_word"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight = "1"
                 android:hint="   输入要查询的单词" />
             <Button
+                android:layout_margin="10dp"
                 android:id="@+id/search_button"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:text="查找"/>
         </LinearLayout>
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="85dp"
-            android:src="@drawable/bonjour"
-            android:layout_margin="5dp"/>
-        <ImageButton
-            android:id="@+id/start_button"
-            android:layout_width="wrap_content"
-            android:layout_height="85dp"
-            android:src="@drawable/startword"
-            android:layout_margin="5dp"/>
-        <ImageButton
-            android:id="@+id/rocket_button"
-            android:layout_width="wrap_content"
-            android:layout_height="85dp"
-            android:src="@drawable/rocketword"
-            android:layout_margin="5dp" />
+            android:layout_height="160dp"
+            android:src="@drawable/bonjour_la"
+            android:layout_margin="1dp"/>
 
-        <ImageButton
-            android:id="@+id/set_button"
-            android:layout_width="wrap_content"
-            android:layout_height="85dp"
-            android:layout_margin="5dp"
-            android:src="@drawable/setword" />
+
     </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView

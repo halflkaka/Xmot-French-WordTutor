@@ -18,6 +18,7 @@ public class UserActivity extends AppCompatActivity {
                 case R.id.navigation_searchword:
                     Intent intent_index = new Intent(UserActivity.this, IndexActivity.class);
                     startActivity(intent_index);
+                    finish();
                     return true;
                 case R.id.navigation_reviewword:
                     return true;
@@ -33,8 +34,8 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.getMenu().getItem(2).setChecked(true);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
     }
 }
 

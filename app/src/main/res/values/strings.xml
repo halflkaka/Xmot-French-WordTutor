@@ -2,7 +2,7 @@
     <string name="app_name">Xmot</string>
     <string name="title_searchword">查单词</string>
     <string name="title_reviewword">背单词</string>
-    <string name="title_user">用户</string>
+    <string name="title_user">用户设置</string>
     <string name="title_activity_login">登陆</string>
 
     <!-- Strings related to login -->
@@ -19,4 +19,5 @@
     </string>
 
     <string name="title_activity_user">用户</string>
+    <string name="title_activity_web">WebActivity</string>
 </resources>

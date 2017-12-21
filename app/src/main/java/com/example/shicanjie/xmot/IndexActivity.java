@@ -24,6 +24,7 @@ public class IndexActivity extends AppCompatActivity {
                 case R.id.navigation_user:
                     Intent intent_user = new Intent(IndexActivity.this, UserActivity.class);
                     startActivity(intent_user);
+                    finish();
                     return true;
             }
             return false;
