@@ -3,8 +3,12 @@ package com.example.shicanjie.xmot.Activity;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 //import android.support.v7.widget.CardView;
 
 import com.andtinder.model.CardModel;
@@ -20,6 +24,7 @@ import java.util.ArrayList;
 public class RocketModeActivity extends AppCompatActivity {
 
     private SQLiteDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,14 +35,25 @@ public class RocketModeActivity extends AppCompatActivity {
         mCardContainer.setOrientation(Orientations.Orientation.Ordered);
         SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(this);
 
+
         ArrayList<WordClass> Words = CreateWordCards();
 
         for (WordClass word:Words) {
-            CardModel card = new CardModel(word.word, word.meaning, this.getResources().getDrawable(R.drawable.picture3));
+            final CardModel card = new CardModel(word.word, word.meaning, this.getResources().getDrawable(R.drawable.picture3));
+
+            card.setOnClickListener(new CardModel.OnClickListener() {
+                @Override
+                public void OnClickListener() {
+                    Log.i("Swipeable Cards","I am pressing the card");
+                }
+            });
+
             adapter.add(card);
         }
 
         mCardContainer.setAdapter(adapter);
+
+
 
         database.close();
 

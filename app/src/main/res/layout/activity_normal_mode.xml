@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.shicanjie.xmot.Activity.NormalModeActivity">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/normal_back"-->
+            <!--android:layout_margin = "5dp"-->
+            <!--android:adjustViewBounds="true"/>-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/Question"-->
+            <!--android:text="Hello"-->
+            <!--android:textSize="50dp"-->
+            <!--android:background="@drawable/buttonshape"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_marginTop="80dp"/>-->
+        <Button
+            android:id="@+id/Question"
+
+            android:textSize="30dp"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:background="@drawable/buttonshape"
+            />
+
+        <Button
+            android:id="@+id/Answer1"
+
+            android:textSize="20dp"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+
+            android:layout_marginTop="250dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/buttonshape"
+            />
+        <Button
+            android:id="@+id/Answer2"
+
+            android:textSize="20dp"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+
+            android:layout_marginTop="335dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/buttonshape"
+            />
+        <Button
+            android:id="@+id/Answer3"
+
+            android:textSize="20dp"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+
+            android:layout_marginTop="420dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/buttonshape"
+            />
+        <Button
+            android:id="@+id/Answer4"
+
+            android:textSize="20dp"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+
+            android:layout_marginTop="505dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/buttonshape"
+            />
+    </FrameLayout>
+</android.support.constraint.ConstraintLayout>

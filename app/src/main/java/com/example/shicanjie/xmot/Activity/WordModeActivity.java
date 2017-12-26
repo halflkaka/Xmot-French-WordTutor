@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -56,5 +57,30 @@ public class WordModeActivity extends AppCompatActivity {
 //                finish();
             }
         });
+
+        normalMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_normal = new Intent(WordModeActivity.this, NormalModeActivity.class);
+                startActivityForResult(intent_normal, 1);
+//                finish();
+            }
+        });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        switch (requestCode){
+            case 1:
+                if(resultCode == RESULT_OK) {
+                    Intent intent_normal = new Intent(WordModeActivity.this, NormalModeActivity.class);
+                    startActivityForResult(intent_normal, 1);
+                    break;
+                }else if(resultCode == RESULT_CANCELED){
+//                    Intent
+                }
+            default:
+        }
+    }
+
 }
