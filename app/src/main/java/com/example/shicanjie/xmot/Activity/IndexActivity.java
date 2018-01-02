@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.shicanjie.xmot.Class.DBManager;
@@ -25,6 +26,7 @@ public class IndexActivity extends AppCompatActivity {
     Button search;
     EditText text;
     TextView text_meaning;
+    ImageView image_Bonjour;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -66,6 +68,7 @@ public class IndexActivity extends AppCompatActivity {
     }
 
     private void display(String meaning){
+        image_Bonjour.setVisibility(View.GONE);
         text_meaning.setText(meaning);
     }
 
@@ -74,11 +77,16 @@ public class IndexActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
 
+        dbHelper = new DBManager(this);
+        dbHelper.openDatabase();
+        dbHelper.closeDatabase();
+
         database = SQLiteDatabase.openOrCreateDatabase(DBManager.DB_PATH + "/" + DBManager.DB_NAME, null);
 
         search = (Button) findViewById(R.id.search_button);
         text = findViewById(R.id.search_word);
         text_meaning = findViewById(R.id.meaning);
+        image_Bonjour = findViewById(R.id.image_bonjour);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
