@@ -24,7 +24,8 @@
         <activity android:name=".Activity.UserActivity" />
         <activity android:name=".Activity.WordModeActivity" />
         <activity android:name=".Activity.RocketModeActivity" />
-        <activity android:name=".Activity.NormalModeActivity"></activity>
+        <activity android:name=".Activity.NormalModeActivity" />
+        <activity android:name=".Activity.ExplanActivity"></activity>
     </application>
 
 </manifest>
