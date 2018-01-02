@@ -74,7 +74,7 @@ public class NormalModeActivity extends AppCompatActivity {
 
         while(true){
             int num = rand.nextInt(10);
-            if(!randomnums.contains(num) && num != 0){
+            if(!randomnums.contains(num) && num != i){
                 randomnums.add(num);
             }
             if(randomnums.size() == 3){break;}
