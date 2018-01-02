@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -19,7 +20,7 @@ import java.util.Random;
 public class NormalModeActivity extends AppCompatActivity {
 
     private SQLiteDatabase database;
-    private ArrayList<AnswerQuestion> Questions;
+    private ArrayList<AnswerQuestion> Questions = new ArrayList<>();
     private ArrayList<Integer> list = new ArrayList<>();
 
     @Override
@@ -34,7 +35,7 @@ public class NormalModeActivity extends AppCompatActivity {
     }
 
     private ArrayList<AnswerQuestion> Generate_Question(){
-        Cursor cur = database.rawQuery("SELECT word,meaning FROM words ORDER BY RANDOM() LIMIT 10",null);
+        Cursor cur = database.rawQuery("SELECT word,meaning FROM words WHERE Length(meaning) < 30 ORDER BY RANDOM() LIMIT 10",null);
         if(cur != null){
             int Num = cur.getCount();
             ArrayList<AnswerQuestion> Questions = new ArrayList<AnswerQuestion>(Num);
@@ -42,8 +43,15 @@ public class NormalModeActivity extends AppCompatActivity {
                 do{
                     String word = cur.getString(cur.getColumnIndex("word"));
                     String meaning = cur.getString(cur.getColumnIndex("meaning"));
-                    AnswerQuestion Question = new AnswerQuestion(word,meaning);
-                    Questions.add(Question);
+
+                    if(meaning.indexOf("：") > 0){
+                        String Meaning = meaning.substring(0, meaning.indexOf("："));
+                        AnswerQuestion Question = new AnswerQuestion(word,Meaning);
+                        Questions.add(Question);
+                    }else {
+                        AnswerQuestion Question = new AnswerQuestion(word,meaning);
+                        Questions.add(Question);
+                    }
                 }while (cur.moveToNext());
             }
             return Questions;
