@@ -12,12 +12,14 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.shicanjie.xmot.R;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
 import java.net.Socket;
 
 
@@ -36,12 +38,12 @@ public class UserActivity extends AppCompatActivity {
                 case R.id.navigation_searchword:
                     Intent intent_index = new Intent(UserActivity.this, IndexActivity.class);
                     startActivity(intent_index);
-                    finish();
+//                    finish();
                     return true;
                 case R.id.navigation_reviewword:
                     Intent intent_wordmode = new Intent(UserActivity.this, WordModeActivity.class);
                     startActivity(intent_wordmode);
-                    finish();
+//                    finish();
                     return true;
                 case R.id.navigation_user:
                     return true;
@@ -61,7 +63,9 @@ public class UserActivity extends AppCompatActivity {
 
             // create client socket, connect to server
             String hostname = "192.168.1.102";
-            Socket clientSocket = new Socket(hostname, 67897);
+            InetAddress ipAddress = InetAddress.getByName(hostname);
+            Socket clientSocket = new Socket(ipAddress, 6789);
+            clientSocket.setSoTimeout(10000);
 
             Log.d("UserActivity", "Socket creates.");
 
@@ -98,15 +102,66 @@ public class UserActivity extends AppCompatActivity {
 
     class MyListener implements View.OnClickListener {
         public void onClick(View v){
-            Log.d("UserActivity", "onClick: ");
             try {
-                Log.d("UserActivity", "onClick2: ");
-                TCPclient(email.toString() + "\n" + password.getText());
+                Connect_Thread connect_Thread = new Connect_Thread();
+                connect_Thread.start();
+//                TCPclient(email.toString() + "\n" + password.getText());
             } catch (Exception e) {
+            }
+        }
+        class Connect_Thread extends Thread implements Runnable//继承Thread
+        {
+            Socket clientSocket;
+
+
+            public void run()
+            {
+                try {
+                    if (clientSocket == null)
+                    {
+                        String message_to_server = email.getText() + "\n" + password.getText();
+                        Log.d("UserActivity", message_to_server);
+
+                        InetAddress ipAddress = InetAddress.getByName("192.168.1.102");
+                        int port = Integer.valueOf(6789);
+                        clientSocket = new Socket(ipAddress, port);
+                        Log.d("UserActivity", "Success!");
+
+                        // create output stream attached to socket
+                        DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+                        Log.d("UserActivity", "2");
+
+                        // create input stream attached to socket
+                        BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                        Log.d("UserActivity", "3");
+
+                        // send line to server
+                        outToServer.writeBytes(message_to_server + '\n');
+                        Log.d("UserActivity", "4");
+
+                        // read line from server
+                        String modifiedSentence = inFromServer.readLine();
+                        Log.d("UserActivity", modifiedSentence);
+
+                        clientSocket.close();
+
+//                        AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(UserActivity.this);
+//                        Log.d("UserActivity", "7");
+//                        builder.setTitle("提醒");
+//                        builder.setMessage(modifiedSentence);
+//                        builder.setPositiveButton("是", null);
+//                        builder.show();
+//                        Toast.makeText(UserActivity.this, "提醒", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
 
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

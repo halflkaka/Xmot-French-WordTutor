@@ -17,6 +17,8 @@ import com.example.shicanjie.xmot.R;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static android.app.Activity.RESULT_OK;
+
 public class NormalModeActivity extends AppCompatActivity {
 
     private SQLiteDatabase database;
