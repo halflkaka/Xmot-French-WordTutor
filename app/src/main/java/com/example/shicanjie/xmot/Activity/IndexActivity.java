@@ -1,14 +1,14 @@
 package com.example.shicanjie.xmot.Activity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.shicanjie.xmot.Class.DBManager;
+import com.example.shicanjie.xmot.Class.MyTCPSocket;
 import com.example.shicanjie.xmot.R;
 
 public class IndexActivity extends AppCompatActivity {
@@ -29,6 +30,7 @@ public class IndexActivity extends AppCompatActivity {
     TextView text_meaning;
     TextView text_InternetMeaning;
     ImageView image_Bonjour;
+    private MyTCPSocket socket_helper;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -69,11 +71,27 @@ public class IndexActivity extends AppCompatActivity {
         }
     }
 
+    class Connect_Thread extends Thread implements Runnable//继承Thread
+    {
+        public void run()
+        {
+            try {
+                socket_helper.getsocket();
+                text_InternetMeaning.setText(socket_helper.sendMessage("/demand " + text.getText()));
+            }
+            catch (Exception ex){
+                Log.d("IndexActivity", "run: " + ex.getMessage());
+            }
+        }
+    }
+
     private void display(String meaning){
         image_Bonjour.setVisibility(View.GONE);
 
         text_meaning.setText(meaning);
-        text_InternetMeaning.setText(meaning);
+
+        IndexActivity.Connect_Thread connect_Thread = new IndexActivity.Connect_Thread();
+        connect_Thread.start();
 
         text_meaning.setVisibility(View.VISIBLE);
         text_InternetMeaning.setVisibility(View.VISIBLE);
