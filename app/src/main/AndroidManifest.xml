@@ -27,5 +27,6 @@
         <activity android:name=".Activity.NormalModeActivity" />
         <activity android:name=".Activity.ExplanActivity"></activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>
