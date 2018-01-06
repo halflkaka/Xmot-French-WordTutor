@@ -49,14 +49,35 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <Button
-            android:id="@+id/sign_in_button"
-            style="?android:textAppearanceSmall"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="@string/action_sign_in"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/sign_in_button"
+                style="?android:textAppearanceSmall"
+                android:layout_width="200dp"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/colorWhite"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:text="@string/action_sign_in"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/register_button"
+                style="?android:textAppearanceSmall"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/colorWhite"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="@string/action_register"
+                android:textStyle="bold" />
+
+        </LinearLayout>
     </LinearLayout>
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
