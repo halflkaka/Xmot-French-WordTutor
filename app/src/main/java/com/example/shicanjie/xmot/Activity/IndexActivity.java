@@ -21,11 +21,13 @@ import com.example.shicanjie.xmot.R;
 
 public class IndexActivity extends AppCompatActivity {
 
-    public DBManager dbHelper;
     private SQLiteDatabase database;
     Button search;
     EditText text;
+    TextView band_local;
+    TextView band_Internet;
     TextView text_meaning;
+    TextView text_InternetMeaning;
     ImageView image_Bonjour;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -69,7 +71,14 @@ public class IndexActivity extends AppCompatActivity {
 
     private void display(String meaning){
         image_Bonjour.setVisibility(View.GONE);
+
         text_meaning.setText(meaning);
+        text_InternetMeaning.setText(meaning);
+
+        text_meaning.setVisibility(View.VISIBLE);
+        text_InternetMeaning.setVisibility(View.VISIBLE);
+        band_local.setVisibility(View.VISIBLE);
+        band_Internet.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -77,19 +86,22 @@ public class IndexActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
 
-        dbHelper = new DBManager(this);
-        dbHelper.openDatabase();
-        dbHelper.closeDatabase();
-
         database = SQLiteDatabase.openOrCreateDatabase(DBManager.DB_PATH + "/" + DBManager.DB_NAME, null);
 
         search = (Button) findViewById(R.id.search_button);
         text = findViewById(R.id.search_word);
         text_meaning = findViewById(R.id.meaning);
         image_Bonjour = findViewById(R.id.image_bonjour);
+        text_InternetMeaning = findViewById(R.id.InternetMeaning);
+        band_Internet = findViewById(R.id.Internet);
+        band_local = findViewById(R.id.Local);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        text_meaning.setVisibility(View.GONE);
+        text_InternetMeaning.setVisibility(View.GONE);
+        band_local.setVisibility(View.GONE);
+        band_Internet.setVisibility(View.GONE);
 
         search.setOnClickListener(new OnClickListener() {
             @Override

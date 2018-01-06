@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
+import com.example.shicanjie.xmot.Class.DBManager;
 import com.example.shicanjie.xmot.R;
 
 public class WelcomeActivity extends AppCompatActivity {
 
+    public DBManager dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -35,6 +37,10 @@ public class WelcomeActivity extends AppCompatActivity {
         });
     }
     private void redirectTo(){
+        dbHelper = new DBManager(this);
+        dbHelper.openDatabase();
+        dbHelper.closeDatabase();
+
         Intent intent = new Intent(this, IndexActivity.class);
         startActivity(intent);
         finish();
