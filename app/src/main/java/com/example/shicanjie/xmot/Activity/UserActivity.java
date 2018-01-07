@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.shicanjie.xmot.Class.MyTCPSocket;
 import com.example.shicanjie.xmot.Class.UserInformation;
@@ -27,6 +26,7 @@ public class UserActivity extends AppCompatActivity {
     EditText password;
     public MyTCPSocket socket_helper;
     public UserInformation user_infor;
+    boolean login_state = false;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -57,7 +57,6 @@ public class UserActivity extends AppCompatActivity {
             try {
                 Connect_Thread_register connect_Thread = new Connect_Thread_register();
                 connect_Thread.start();
-                Toast.makeText(UserActivity.this, "Log in!", Toast.LENGTH_SHORT);
 //                TCPclient(email.toString() + "\n" + password.getText());
             } catch (Exception e) {
             }
@@ -106,14 +105,24 @@ public class UserActivity extends AppCompatActivity {
             try {
                 Connect_Thread_signin connect_Thread = new Connect_Thread_signin();
                 connect_Thread.start();
+
+                Log.d("UserActivity", "onClick: " + login_state);
+                if (login_state){
+                    Log.d("UserActivity", "onClick: " + email.getText() + " " + password.getText().toString());
+//                        user_infor.set_Username(email.getText().toString());
+//                        user_infor.set_Password(password.getText().toString());
+                    Log.d("UserActivity", "run: loading to information activity...");
+                    Intent intent_index = new Intent(UserActivity.this, UserInforActivity.class);
+                    startActivity(intent_index);
+                    finish();
+                }
+
 //                TCPclient(email.toString() + "\n" + password.getText());
             } catch (Exception e) {
             }
         }
         class Connect_Thread_signin extends Thread implements Runnable//继承Thread
         {
-            MyTCPSocket clientSocket;
-
 
             public void run()
             {
@@ -123,6 +132,8 @@ public class UserActivity extends AppCompatActivity {
                     modifiedSentence = socket_helper.sendMessage("/signin " + email.getText() + " " + password.getText());
                     Log.d("UserActivity", modifiedSentence);
 
+                    if (modifiedSentence.equals("Sign in succeed.")) login_state = true;
+
                     android.support.v7.app.AlertDialog.Builder alertDialogBuilder=new android.support.v7.app.AlertDialog.Builder(UserActivity.this);
                     alertDialogBuilder.setTitle("提醒");
                     alertDialogBuilder.setMessage(modifiedSentence);
@@ -131,9 +142,9 @@ public class UserActivity extends AppCompatActivity {
                     android.support.v7.app.AlertDialog alert_signin = alertDialogBuilder.create();
                     alert_signin.show();
                     Looper.loop();
-                    if (modifiedSentence.equals("Sign in succeed.")){
 
-                    }
+
+
 
 
 

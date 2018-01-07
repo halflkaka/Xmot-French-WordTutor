@@ -5,16 +5,22 @@ package com.example.shicanjie.xmot.Class;
  */
 
 public class UserInformation {
-    private static String user_name = null;
-    private static String password = null;
+    private static String user_name = "";
+    private static String password = "";
     public String get_Username(){
         return user_name;
     }
     public String get_Password(){
         return password;
     }
+    public boolean getLoginState(){
+        if ((!user_name.equals("")) && (!password.equals(""))){
+            return true;
+        }
+        else return false;
+    }
     public boolean set_Username(String str){
-        if (user_name != null){
+        if (!user_name.equals("")){
             return false;
         }
         else {
@@ -23,7 +29,7 @@ public class UserInformation {
         }
     }
     public boolean set_Password(String str){
-        if (password != null){
+        if (!password.equals("")){
             return false;
         }
         else {
@@ -32,8 +38,8 @@ public class UserInformation {
         }
     }
     public boolean reset_all(){
-        user_name = null;
-        password = null;
+        user_name = "";
+        password = "";
         return true;
     }
 }
