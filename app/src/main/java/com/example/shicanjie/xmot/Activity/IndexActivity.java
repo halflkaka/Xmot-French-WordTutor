@@ -79,7 +79,7 @@ public class IndexActivity extends AppCompatActivity {
         {
             try {
                 socket_helper.getsocket();
-                text_InternetMeaning.setText(socket_helper.sendMessage("/demand " + text.getText())+"\n\n\n\n");
+                text_InternetMeaning.setText(socket_helper.sendMessage("/demand " + text.getText()));
             }
             catch (Exception ex){
                 Log.d("IndexActivity", "run: " + ex.getMessage());
