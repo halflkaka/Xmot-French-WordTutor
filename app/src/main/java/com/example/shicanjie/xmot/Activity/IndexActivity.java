@@ -63,7 +63,7 @@ public class IndexActivity extends AppCompatActivity {
                 Log.d("IndexActivity", cur.getString(cur.getColumnIndex("meaning")));
                 return cur.getString(cur.getColumnIndex("word")) + ":\n" + cur.getString(cur.getColumnIndex("meaning"));
             }
-            return "No find. Please try again.";
+            return "词库中无此词，请重新输入。";
         }
         else {
             Log.d("IndexActivity", "NO meaning");
@@ -77,7 +77,7 @@ public class IndexActivity extends AppCompatActivity {
         {
             try {
                 socket_helper.getsocket();
-                text_InternetMeaning.setText(socket_helper.sendMessage("/demand " + text.getText()));
+                text_InternetMeaning.setText(socket_helper.sendMessage("/demand " + text.getText())+"\n\n\n\n");
             }
             catch (Exception ex){
                 Log.d("IndexActivity", "run: " + ex.getMessage());

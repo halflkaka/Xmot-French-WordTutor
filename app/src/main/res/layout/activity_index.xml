@@ -6,91 +6,112 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.shicanjie.xmot.Activity.IndexActivity">
+
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-<!---->
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <!---->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <EditText
-                android:layout_margin="15dp"
                 android:id="@+id/search_word"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_weight = "1"
-                android:hint="   输入要查询的单词" />
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:hint=" 输入要查询的单词"
+                android:maxLines="1"
+                android:singleLine="true" />
+
             <Button
-                android:layout_margin="10dp"
                 android:id="@+id/search_button"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="查找"/>
+                android:layout_margin="10dp"
+                android:text="查找" />
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/image_bonjour"
             android:layout_width="wrap_content"
             android:layout_height="160dp"
-            android:id="@+id/image_bonjour"
-            android:src="@drawable/bonjour_la"
+            android:layout_margin="10dp"
             android:layout_marginTop="20dp"
-            android:layout_margin="10dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="15dp"
-            >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="0dp"
-                android:id="@+id/Local"
-                android:visibility="visible"
-                android:textSize="20dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold"
-                android:text="本地释义\n"/>
+            android:src="@drawable/bonjour_la" />
 
-            <TextView
-                android:layout_marginHorizontal="5dp"
-                android:layout_marginVertical="0dp"
-                android:id="@+id/meaning"
-                android:visibility="visible"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:textColor="@color/colorPrimary"
-                android:text="" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="15dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="0dp"
-                android:id="@+id/Internet"
-                android:visibility="visible"
-                android:textSize="20dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold"
-                android:text="网络释义\n"/>
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/InternetMeaning"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="5dp"
-                android:layout_marginVertical="0dp"
-                android:text="无"
-                android:textColor="@color/colorPrimary"
-                android:textSize="15dp"
-                android:visibility="visible" />
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/Local"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0dp"
+                        android:text="本地释义\n"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/meaning"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_marginVertical="0dp"
+                        android:text=""
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="15dp"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/Internet"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="0dp"
+                        android:text="网络释义\n"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/InternetMeaning"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_marginVertical="0dp"
+                        android:text="无"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="15dp"
+                        android:visibility="visible" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
 
     </LinearLayout>
 
