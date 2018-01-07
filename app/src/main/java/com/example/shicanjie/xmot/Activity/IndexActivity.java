@@ -104,6 +104,7 @@ public class IndexActivity extends AppCompatActivity {
         text_meaning.setText(meaning);
 
         IndexActivity.Connect_Thread connect_Thread = new IndexActivity.Connect_Thread();
+        text_InternetMeaning.setText("loading...");
         connect_Thread.start();
 
         text_meaning.setVisibility(View.VISIBLE);

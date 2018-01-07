@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.shicanjie.xmot.Class.UserInformation;
 import com.example.shicanjie.xmot.R;
@@ -16,6 +17,7 @@ public class UserInforActivity extends AppCompatActivity {
 
     Button btn_logout;
     UserInformation user_infor = new UserInformation();
+    TextView user_name;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -46,6 +48,9 @@ public class UserInforActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_infor);
 
         btn_logout = findViewById(R.id.logout);
+        user_name = findViewById(R.id.username);
+
+        user_name.setText(user_infor.get_Username());
 
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
