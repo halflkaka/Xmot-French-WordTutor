@@ -12,6 +12,9 @@ import android.widget.ImageButton;
 
 import com.example.shicanjie.xmot.R;
 
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+
 public class WordModeActivity extends AppCompatActivity {
 
 
@@ -80,7 +83,7 @@ public class WordModeActivity extends AppCompatActivity {
                     break;
                 }else if(resultCode == RESULT_CANCELED){
 //                    Intent
-//                    break;
+                    break;
                 }
             default:
         }
