@@ -61,6 +61,7 @@ public class UserActivity extends AppCompatActivity {
             } catch (Exception e) {
             }
         }
+
         class Connect_Thread_register extends Thread implements Runnable//继承Thread
         {
             MyTCPSocket clientSocket;
@@ -73,7 +74,6 @@ public class UserActivity extends AppCompatActivity {
                     socket_helper.getsocket();
                     modifiedSentence = socket_helper.sendMessage("/register " + email.getText() + " " + password.getText());
                     Log.d("UserActivity", modifiedSentence);
-
                     android.support.v7.app.AlertDialog.Builder alertDialogBuilder=new android.support.v7.app.AlertDialog.Builder(UserActivity.this);
                     alertDialogBuilder.setTitle("提醒");
                     alertDialogBuilder.setMessage(modifiedSentence);
@@ -124,11 +124,29 @@ public class UserActivity extends AppCompatActivity {
                     startActivity(intent_index);
                     finish();
                 }
+                else {
+                    alert_thread alert = new alert_thread();
+                    alert.start();
+                }
 
 //                TCPclient(email.toString() + "\n" + password.getText());
             } catch (Exception e) {
             }
         }
+
+        class alert_thread extends Thread implements Runnable{
+            public void run(){
+                android.support.v7.app.AlertDialog.Builder alertDialogBuilder=new android.support.v7.app.AlertDialog.Builder(UserActivity.this);
+                alertDialogBuilder.setTitle("提醒");
+                alertDialogBuilder.setMessage("Username or password is wrong. Please try again!");
+                alertDialogBuilder.setPositiveButton("是", null);
+                Looper.prepare();
+                android.support.v7.app.AlertDialog alert_signin = alertDialogBuilder.create();
+                alert_signin.show();
+                Looper.loop();
+            }
+        }
+
         class Connect_Thread_signin extends Thread implements Runnable//继承Thread
         {
 
@@ -141,20 +159,7 @@ public class UserActivity extends AppCompatActivity {
                     Log.d("UserActivity", modifiedSentence);
 
                     if (modifiedSentence.equals("Sign in succeed.")) login_state = true;
-                    else {
-                        android.support.v7.app.AlertDialog.Builder alertDialogBuilder=new android.support.v7.app.AlertDialog.Builder(UserActivity.this);
-                        alertDialogBuilder.setTitle("提醒");
-                        alertDialogBuilder.setMessage(modifiedSentence);
-                        alertDialogBuilder.setPositiveButton("是", null);
-                        Looper.prepare();
-                        android.support.v7.app.AlertDialog alert_signin = alertDialogBuilder.create();
-                        alert_signin.show();
-                        Looper.loop();
-                    }
-
-
-
-
+                    else login_state = false;
 
 
 
