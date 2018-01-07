@@ -17,8 +17,8 @@ import java.net.UnknownHostException;
  */
 
 public class MyTCPSocket extends Socket {
-    private static final String host = "192.168.31.162";
-    private static final int port = 8888;
+    private static final String host = "192.168.1.100";
+    private static final int port = 6789;
     private static BufferedReader br = null;
     private static PrintWriter pw = null;
     /* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载 */
@@ -46,7 +46,7 @@ public class MyTCPSocket extends Socket {
 
         // send line to server
         Log.d("MyTCPSocket", "sendMessage: " + command);
-        outToServer.writeBytes(command + '\n');
+        outToServer.write((command + '\n').getBytes("utf-8"));
 
         // read line from server
         String response = inFromServer.readLine();
@@ -54,6 +54,13 @@ public class MyTCPSocket extends Socket {
         return response;
     }
 
+    public static String returnMessage() throws IOException{
+        if(inFromServer == null) inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
+
+        String response = inFromServer.readLine();
+        Log.d("MyTCPSocket", "response: " + response);
+        return response;
+    }
     public static BufferedReader getbr() throws IOException {
         if(br==null){
             br=new BufferedReader(new InputStreamReader(socket.getInputStream(),"utf-8"));

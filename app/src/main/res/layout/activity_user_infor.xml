@@ -85,8 +85,7 @@
                     android:layout_marginLeft="30dp"
                     android:textSize="15sp"
                     android:textColor="@color/colorPrimary"
-                    android:id="@+id/text_collection"
-                    android:text="loading..."/>
+                    android:id="@+id/text_collection" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

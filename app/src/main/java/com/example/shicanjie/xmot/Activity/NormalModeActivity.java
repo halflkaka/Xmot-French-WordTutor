@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.shicanjie.xmot.Class.AnswerQuestion;
 import com.example.shicanjie.xmot.Class.DBManager;
 import com.example.shicanjie.xmot.Class.MyTCPSocket;
+import com.example.shicanjie.xmot.Class.UserInformation;
 import com.example.shicanjie.xmot.R;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class NormalModeActivity extends AppCompatActivity {
     ArrayList<Integer> randomnums = new ArrayList<Integer>();
     private ArrayList<Integer> list = new ArrayList<>();
     private MyTCPSocket socket_helper;
+    private UserInformation User = new UserInformation();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +78,9 @@ public class NormalModeActivity extends AppCompatActivity {
         public void run()
         {
             try {
-                Log.d("NormalModeActivity", "/demand " + "/" + Question + "/" + Answer);
+                Log.d("NormalModeActivity", "/store " +"#" + User.get_Username() + "#" + Question + "#" + Answer);
                 socket_helper.getsocket();
-                socket_helper.sendMessage("/demand " + "/" + Question + "/" + Answer);
+                socket_helper.sendMessage("/store " + "#" + User.get_Username()+ "#" + Question + "#" + Answer);
             }
             catch (Exception ex){
                 Log.d("NormalModeActivity", "run: " + ex.getMessage());
