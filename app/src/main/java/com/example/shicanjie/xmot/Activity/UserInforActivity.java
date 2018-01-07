@@ -6,10 +6,16 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
+import com.example.shicanjie.xmot.Class.UserInformation;
 import com.example.shicanjie.xmot.R;
 
 public class UserInforActivity extends AppCompatActivity {
+
+    Button btn_logout;
+    UserInformation user_infor = new UserInformation();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -38,6 +44,18 @@ public class UserInforActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_infor);
+
+        btn_logout = findViewById(R.id.logout);
+
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                user_infor.reset_all();
+                Intent intent_index = new Intent(UserInforActivity.this, UserActivity.class);
+                startActivity(intent_index);
+                finish();
+            }
+        });
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.getMenu().getItem(2).setChecked(true);
