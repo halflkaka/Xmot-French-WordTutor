@@ -25,7 +25,7 @@ public class UserActivity extends AppCompatActivity {
     AutoCompleteTextView email;
     EditText password;
     public MyTCPSocket socket_helper;
-    public UserInformation user_infor;
+    public UserInformation user_infor = new UserInformation();
     boolean login_state = false;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -105,12 +105,20 @@ public class UserActivity extends AppCompatActivity {
             try {
                 Connect_Thread_signin connect_Thread = new Connect_Thread_signin();
                 connect_Thread.start();
+                try {
+                    connect_Thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
                 Log.d("UserActivity", "onClick: " + login_state);
+
+
+
                 if (login_state){
                     Log.d("UserActivity", "onClick: " + email.getText() + " " + password.getText().toString());
-//                        user_infor.set_Username(email.getText().toString());
-//                        user_infor.set_Password(password.getText().toString());
+                    user_infor.set_Username(email.getText().toString());
+                    user_infor.set_Password(password.getText().toString());
                     Log.d("UserActivity", "run: loading to information activity...");
                     Intent intent_index = new Intent(UserActivity.this, UserInforActivity.class);
                     startActivity(intent_index);
@@ -133,15 +141,18 @@ public class UserActivity extends AppCompatActivity {
                     Log.d("UserActivity", modifiedSentence);
 
                     if (modifiedSentence.equals("Sign in succeed.")) login_state = true;
+                    else {
+                        android.support.v7.app.AlertDialog.Builder alertDialogBuilder=new android.support.v7.app.AlertDialog.Builder(UserActivity.this);
+                        alertDialogBuilder.setTitle("提醒");
+                        alertDialogBuilder.setMessage(modifiedSentence);
+                        alertDialogBuilder.setPositiveButton("是", null);
+                        Looper.prepare();
+                        android.support.v7.app.AlertDialog alert_signin = alertDialogBuilder.create();
+                        alert_signin.show();
+                        Looper.loop();
+                    }
 
-                    android.support.v7.app.AlertDialog.Builder alertDialogBuilder=new android.support.v7.app.AlertDialog.Builder(UserActivity.this);
-                    alertDialogBuilder.setTitle("提醒");
-                    alertDialogBuilder.setMessage(modifiedSentence);
-                    alertDialogBuilder.setPositiveButton("是", null);
-                    Looper.prepare();
-                    android.support.v7.app.AlertDialog alert_signin = alertDialogBuilder.create();
-                    alert_signin.show();
-                    Looper.loop();
+
 
 
 
