@@ -186,6 +186,12 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
+        if (user_infor.getLoginState()){
+            Intent intent_index = new Intent(UserActivity.this, UserInforActivity.class);
+            startActivity(intent_index);
+            finish();
+        }
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         sign_in = findViewById(R.id.sign_in_button);
         register = findViewById(R.id.register_button);
