@@ -32,12 +32,12 @@ public class UserInforActivity extends AppCompatActivity {
                 case R.id.navigation_searchword:
                     Intent intent_index = new Intent(UserInforActivity.this, IndexActivity.class);
                     startActivity(intent_index);
-//                    finish();
+                    finish();
                     return true;
                 case R.id.navigation_reviewword:
                     Intent intent_wordmode = new Intent(UserInforActivity.this, WordModeActivity.class);
                     startActivity(intent_wordmode);
-//                    finish();
+                    finish();
                     return true;
                 case R.id.navigation_user:
                     return true;
