@@ -25,7 +25,6 @@
         <activity android:name=".Activity.WordModeActivity" />
         <activity android:name=".Activity.RocketModeActivity" />
         <activity android:name=".Activity.NormalModeActivity" />
-        <activity android:name=".Activity.ExplanActivity"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

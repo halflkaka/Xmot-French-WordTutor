@@ -8,22 +8,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.shicanjie.xmot.Class.AnswerQuestion;
 import com.example.shicanjie.xmot.Class.DBManager;
-import com.example.shicanjie.xmot.Class.WordClass;
+import com.example.shicanjie.xmot.Class.MyTCPSocket;
 import com.example.shicanjie.xmot.R;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import static android.app.Activity.RESULT_OK;
-
 public class NormalModeActivity extends AppCompatActivity {
 
     private SQLiteDatabase database;
     private ArrayList<AnswerQuestion> Questions = new ArrayList<>();
+    ArrayList<Integer> randomnums = new ArrayList<Integer>();
     private ArrayList<Integer> list = new ArrayList<>();
+    private MyTCPSocket socket_helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,46 @@ public class NormalModeActivity extends AppCompatActivity {
         }
     }
 
-    private void display(final ArrayList<AnswerQuestion> Questions){
+    class Connect_Thread extends Thread implements Runnable//继承Thread
+    {
+        private String Question;
+        private String Answer;
+
+        public Connect_Thread(int i){
+            this.Question = Questions.get(i).GetQuestion();
+            this.Answer = Questions.get(i).GetAnswer();
+        }
+
+        public void run()
+        {
+            try {
+                Log.d("NormalModeActivity", "/demand " + "/" + Question + "/" + Answer);
+                socket_helper.getsocket();
+                socket_helper.sendMessage("/demand " + "/" + Question + "/" + Answer);
+            }
+            catch (Exception ex){
+                Log.d("NormalModeActivity", "run: " + ex.getMessage());
+            }
+        }
+    }
+
+    class MyClickListener implements View.OnClickListener {
+        private Integer pos;
+        public MyClickListener(Integer Pos){
+            this.pos = Pos;
+        }
+        public void onClick(View v) {
+            Toast.makeText(NormalModeActivity.this, "Wrong Answer!", Toast.LENGTH_SHORT).show();
+            SendWrongWord(this.pos);
+        }
+    }
+
+    private void SendWrongWord(int i){
+        NormalModeActivity.Connect_Thread connect_thread = new NormalModeActivity.Connect_Thread(i);
+        connect_thread.start();
+    }
+
+    private void display(ArrayList<AnswerQuestion> Questions){
         Button Question = (Button) findViewById(R.id.Question);
         Button Answer1 = (Button) findViewById(R.id.Answer1);
         Button Answer2 = (Button) findViewById(R.id.Answer2);
@@ -70,7 +110,7 @@ public class NormalModeActivity extends AppCompatActivity {
         Button Answer4 = (Button) findViewById(R.id.Answer4);
 
 //        Question.setText(Questions.get(0).GetQuestion());
-        ArrayList<Integer> randomnums = new ArrayList<Integer>();
+        randomnums = new ArrayList<Integer>();
         Random rand = new Random();
         int i;
         while(true){
@@ -105,8 +145,14 @@ public class NormalModeActivity extends AppCompatActivity {
                 }
             });
             Answer2.setText(Questions.get(randomnums.get(0)).GetAnswer());
+            Answer2.setOnClickListener(new MyClickListener(i));
+
             Answer3.setText(Questions.get(randomnums.get(1)).GetAnswer());
+            Answer3.setOnClickListener(new MyClickListener(i));
+
             Answer4.setText(Questions.get(randomnums.get(2)).GetAnswer());
+            Answer4.setOnClickListener(new MyClickListener(i));
+
         }else if(Rand == 1){
             Answer2.setText(Questions.get(i).GetAnswer());
             Answer2.setOnClickListener(new View.OnClickListener() {
@@ -119,8 +165,14 @@ public class NormalModeActivity extends AppCompatActivity {
                 }
             });
             Answer1.setText(Questions.get(randomnums.get(0)).GetAnswer());
+            Answer1.setOnClickListener(new MyClickListener(i));
+
             Answer3.setText(Questions.get(randomnums.get(1)).GetAnswer());
+            Answer3.setOnClickListener(new MyClickListener(i));
+
             Answer4.setText(Questions.get(randomnums.get(2)).GetAnswer());
+            Answer4.setOnClickListener(new MyClickListener(i));
+
         }else if(Rand ==2){
             Answer3.setText(Questions.get(i).GetAnswer());
             Answer3.setOnClickListener(new View.OnClickListener() {
@@ -133,8 +185,14 @@ public class NormalModeActivity extends AppCompatActivity {
                 }
             });
             Answer1.setText(Questions.get(randomnums.get(0)).GetAnswer());
+            Answer1.setOnClickListener(new MyClickListener(i));
+
             Answer2.setText(Questions.get(randomnums.get(1)).GetAnswer());
+            Answer2.setOnClickListener(new MyClickListener(i));
+
             Answer4.setText(Questions.get(randomnums.get(2)).GetAnswer());
+            Answer4.setOnClickListener(new MyClickListener(i));
+
         }else if(Rand == 3){
             Answer4.setText(Questions.get(i).GetAnswer());
             Answer4.setOnClickListener(new View.OnClickListener() {
@@ -147,8 +205,14 @@ public class NormalModeActivity extends AppCompatActivity {
                 }
             });
             Answer1.setText(Questions.get(randomnums.get(0)).GetAnswer());
+            Answer1.setOnClickListener(new MyClickListener(i));
+
             Answer3.setText(Questions.get(randomnums.get(1)).GetAnswer());
+            Answer3.setOnClickListener(new MyClickListener(i));
+
             Answer2.setText(Questions.get(randomnums.get(2)).GetAnswer());
+            Answer2.setOnClickListener(new MyClickListener(i));
+
         }
     }
 }

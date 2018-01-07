@@ -75,9 +75,12 @@ public class WordModeActivity extends AppCompatActivity {
                 if(resultCode == RESULT_OK) {
                     Intent intent_normal = new Intent(WordModeActivity.this, NormalModeActivity.class);
                     startActivityForResult(intent_normal, 1);
+                    String returnedData = data.getStringExtra("data_return");
+                    Log.d("WordModeActivity", returnedData);
                     break;
                 }else if(resultCode == RESULT_CANCELED){
 //                    Intent
+//                    break;
                 }
             default:
         }
