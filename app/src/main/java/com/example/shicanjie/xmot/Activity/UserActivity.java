@@ -2,6 +2,7 @@ package com.example.shicanjie.xmot.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.shicanjie.xmot.Class.MyTCPSocket;
+import com.example.shicanjie.xmot.Class.UserInformation;
 import com.example.shicanjie.xmot.R;
 
 
@@ -24,6 +26,7 @@ public class UserActivity extends AppCompatActivity {
     AutoCompleteTextView email;
     EditText password;
     public MyTCPSocket socket_helper;
+    public UserInformation user_infor;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -72,6 +75,15 @@ public class UserActivity extends AppCompatActivity {
                     modifiedSentence = socket_helper.sendMessage("/register " + email.getText() + " " + password.getText());
                     Log.d("UserActivity", modifiedSentence);
 
+                    android.support.v7.app.AlertDialog.Builder alertDialogBuilder=new android.support.v7.app.AlertDialog.Builder(UserActivity.this);
+                    alertDialogBuilder.setTitle("提醒");
+                    alertDialogBuilder.setMessage(modifiedSentence);
+                    alertDialogBuilder.setPositiveButton("是", null);
+                    Looper.prepare();
+                    android.support.v7.app.AlertDialog alert_signin = alertDialogBuilder.create();
+                    alert_signin.show();
+                    Looper.loop();
+
 
 //                        AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(UserActivity.this);
 //                        Log.d("UserActivity", "7");
@@ -92,7 +104,6 @@ public class UserActivity extends AppCompatActivity {
     class MyListener_signin implements View.OnClickListener {
         public void onClick(View v){
             try {
-                Toast.makeText(UserActivity.this, "Log in!", Toast.LENGTH_SHORT);
                 Connect_Thread_signin connect_Thread = new Connect_Thread_signin();
                 connect_Thread.start();
 //                TCPclient(email.toString() + "\n" + password.getText());
@@ -111,6 +122,19 @@ public class UserActivity extends AppCompatActivity {
                     socket_helper.getsocket();
                     modifiedSentence = socket_helper.sendMessage("/signin " + email.getText() + " " + password.getText());
                     Log.d("UserActivity", modifiedSentence);
+
+                    android.support.v7.app.AlertDialog.Builder alertDialogBuilder=new android.support.v7.app.AlertDialog.Builder(UserActivity.this);
+                    alertDialogBuilder.setTitle("提醒");
+                    alertDialogBuilder.setMessage(modifiedSentence);
+                    alertDialogBuilder.setPositiveButton("是", null);
+                    Looper.prepare();
+                    android.support.v7.app.AlertDialog alert_signin = alertDialogBuilder.create();
+                    alert_signin.show();
+                    Looper.loop();
+                    if (modifiedSentence.equals("Sign in succeed.")){
+
+                    }
+
 
 
 //                        AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(UserActivity.this);
