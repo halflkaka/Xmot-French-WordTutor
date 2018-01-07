@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.shicanjie.xmot.Class.MyTCPSocket;
 import com.example.shicanjie.xmot.Class.UserInformation;
@@ -54,29 +53,56 @@ public class UserInforActivity extends AppCompatActivity {
             try {
                 Log.d("UserInforActivity", "/require " +"#" + user_infor.get_Username());
                 socket_helper.getsocket();
-                String count = socket_helper.sendMessage("/require " + "#" + user_infor.get_Username());
+                String words = socket_helper.sendMessage("/require " + "#" + user_infor.get_Username());
 //                String count = socket_helper.returnMessage();
-                Log.d("UserInforActivity", "count: "+count);
+                Log.d("UserInforActivity", "count: "+words);
 
-                Integer Count = Integer.valueOf(count).intValue();
-                for(Integer i = 0;i < Count;i ++){
-                    String words = socket_helper.returnMessage();
-                    Log.d("UserInforActivity", "words: "+words);
-                    notebook.setText(notebook.getText() + "\n" + words);
-//                    notebook.setText(words);
+//                Integer Count = Integer.valueOf(count).intValue();
+//                for(Integer i = 0;i < Count;i ++){
+//                    String words = socket_helper.returnMessage();
+//                    Log.d("UserInforActivity", "words: "+words);
+//                    notebook.setText(notebook.getText() + "\n" + words);
+////                    notebook.setText(words);
+//                }
+//                String result = socket_helper.returnMessage();
+////                notebook.setText(count);
+//                Log.d("UserInforActivity", "result: "+result);
+                String ss[];
+                ss = words.split("#");
+                for (int i = 0; i < ss.length; i++){
+                    notebook.setText(notebook.getText()+"\n"+ss[i]);
                 }
-                String result = socket_helper.returnMessage();
-//                notebook.setText(count);
-                Log.d("UserInforActivity", "result: "+result);
             }
             catch (Exception ex){
                 Log.d("UserInforActivity", "run: " + ex.getMessage());
             }
         }
     }
-//
+
+    class Logout_Thread extends Thread implements Runnable//继承Thread
+    {
+        public void run()
+        {
+            try {
+                Log.d("UserInforActivity", "/require " +"#" + user_infor.get_Username());
+                socket_helper.getsocket();
+                String words = socket_helper.sendMessage("/quit");
+                Log.d("UserInforActivity", words);
+            }
+            catch (Exception ex){
+                Log.d("UserInforActivity", "run: " + ex.getMessage());
+            }
+        }
+    }
+
     private void requireNotes(){
         UserInforActivity.Connect_Thread connect_thread = new UserInforActivity.Connect_Thread();
+        connect_thread.start();
+    }
+
+    private void logout(){
+        user_infor.reset_all();
+        UserInforActivity.Logout_Thread connect_thread = new UserInforActivity.Logout_Thread();
         connect_thread.start();
     }
 
@@ -95,7 +121,7 @@ public class UserInforActivity extends AppCompatActivity {
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                user_infor.reset_all();
+                logout();
                 Intent intent_index = new Intent(UserInforActivity.this, UserActivity.class);
                 startActivity(intent_index);
                 finish();

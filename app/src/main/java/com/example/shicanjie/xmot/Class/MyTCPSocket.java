@@ -17,7 +17,7 @@ import java.net.UnknownHostException;
  */
 
 public class MyTCPSocket extends Socket {
-    private static final String host = "192.168.1.100";
+    private static final String host = "192.168.31.162";
     private static final int port = 6789;
     private static BufferedReader br = null;
     private static PrintWriter pw = null;
@@ -50,7 +50,7 @@ public class MyTCPSocket extends Socket {
 
         // read line from server
         String response = inFromServer.readLine();
-        Log.d("MyTCPSocket", "sendMessage: " + response);
+        Log.d("MyTCPSocket", "response: " + response);
         return response;
     }
 
