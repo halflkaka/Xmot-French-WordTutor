@@ -1,5 +1,6 @@
 package com.example.shicanjie.xmot.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -85,6 +87,17 @@ public class IndexActivity extends AppCompatActivity {
         }
     }
 
+    private void hideKeyBoard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        // 得到InputMethodManager的实例
+        if (imm.isActive()) {
+            // 如果开启
+            imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,
+                    InputMethodManager.HIDE_NOT_ALWAYS);
+            // 关闭软键盘，开启方法相同，这个方法是切换开启与关闭状态的
+        }
+    }
+
     private void display(String meaning){
         image_Bonjour.setVisibility(View.GONE);
 
@@ -126,6 +139,7 @@ public class IndexActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("IndexActivity", text.getText().toString());
                 display(searchForMeaning());
+                hideKeyBoard();
             }
         });
 
