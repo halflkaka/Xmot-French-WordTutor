@@ -11,13 +11,13 @@ You can download [here](http://www.lingoes.cn/zh/dictionary).
 ### Search word meanings/查单词
 Search on the **local database** first. Then send request to the server, server will look up the word on [法语助手](http://www.frdic.com) and send the meaning back to the client.  
 
-<img width="500" height="900" src="https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/Searchword.png"/>  
+<img width="500" height="800" src="https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/Searchword.png"/>  
 
 ### Recite words/背单词
 #### Rocket Recitation Mode/极速背词
 Thanks to the [Swpieable-Cards](https://github.com/kikoso/Swipeable-Cards) provided by kikoso.  
 
-<img width="500" height="900" src="https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/Rocket.png"/>  
+<img width="500" height="800" src="https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/Rocket.png"/>  
 
 Every time ten words randomly selected from the local database will be displayed.  
 #### Normal Recitation Mode/顺序背词
@@ -55,12 +55,12 @@ class Connect_Thread extends Thread implements Runnable//继承Thread
         }
     }
 </pre>
-<img width="500" height="900" src="https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/normal.png"/>  
+<img width="500" height="800" src="https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/normal.png"/>  
 ## Login/用户登陆
 Make sure that you have set the right IP address in class **MyTCPSocket**.  
 
-<img width="500" height="400" src="https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/IP.png"/>  
-<img width="500" height="400" src="https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/wifi.png"/>  
+<img width="800" height="500" src="https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/IP.png"/>  
+<img width="800" height="500" src="https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/wifi.png"/>  
 
 The new user should register at first and then log in. 
  
