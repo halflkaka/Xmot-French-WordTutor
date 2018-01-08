@@ -17,11 +17,10 @@ import java.net.UnknownHostException;
  */
 
 public class MyTCPSocket extends Socket {
-    private static final String host = "192.168.31.162";
+    private static final String host = "192.168.1.100";
     private static final int port = 6789;
     private static BufferedReader br = null;
     private static PrintWriter pw = null;
-    /* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载 */
     private static MyTCPSocket socket = null;
     private static DataOutputStream outToServer = null;
     private static BufferedReader inFromServer = null;
