@@ -3,6 +3,11 @@ This a simple Android app which helps you look up meanings of french words **off
 
 <img width="500" height="400" src="https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/WelcomUI.png"/>  
 
+## Usage/使用方法
+`javac androidserver.java`  
+`java androidserver`  
+Then your android device can connect to your server. Remember to change the IP address in MyTCPConnection.  
+
 ## Basic functions/基本功能
 ### Database/词库
 Lingoes Dictionary：法汉词典  
