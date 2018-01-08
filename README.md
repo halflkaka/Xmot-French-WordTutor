@@ -56,6 +56,7 @@ class Connect_Thread extends Thread implements Runnable//继承Thread
     }
 </pre>
 <img width="500" height="800" src="https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/normal.png"/>  
+
 ## Login/用户登陆
 Make sure that you have set the right IP address in class **MyTCPSocket**.  
 
