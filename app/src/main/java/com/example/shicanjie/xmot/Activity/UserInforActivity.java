@@ -57,16 +57,6 @@ public class UserInforActivity extends AppCompatActivity {
 //                String count = socket_helper.returnMessage();
                 Log.d("UserInforActivity", "count: "+words);
 
-//                Integer Count = Integer.valueOf(count).intValue();
-//                for(Integer i = 0;i < Count;i ++){
-//                    String words = socket_helper.returnMessage();
-//                    Log.d("UserInforActivity", "words: "+words);
-//                    notebook.setText(notebook.getText() + "\n" + words);
-////                    notebook.setText(words);
-//                }
-//                String result = socket_helper.returnMessage();
-////                notebook.setText(count);
-//                Log.d("UserInforActivity", "result: "+result);
                 String ss[];
                 ss = words.split("#");
                 for (int i = 0; i < ss.length; i++){

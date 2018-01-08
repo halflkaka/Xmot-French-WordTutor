@@ -39,7 +39,6 @@ public class DBManager {
 
     private SQLiteDatabase openDatabase(String dbfile) {
         try {
-//            if (!(new File(dbfile).exists())) {//判断数据库文件是否存在，若不存在则执行导入，否则直接打开数据库
                 InputStream is = this.context.getResources().openRawResource(
                         R.raw.word); //欲导入的数据库
                 FileOutputStream fos = new FileOutputStream(dbfile);
@@ -50,7 +49,6 @@ public class DBManager {
                 }
                 fos.close();
                 is.close();
-//            }
             SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(dbfile,
                     null);
             return db;
