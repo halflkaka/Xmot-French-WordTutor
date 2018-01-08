@@ -5,7 +5,8 @@ This a simple Android app which helps you look up meanings of french words **off
 
 ## Usage/使用方法
 `javac androidserver.java`  
-`java androidserver`  
+`java androidserver`  
+
 Then your android device can connect to your server. Remember to change the IP address in MyTCPConnection.  
 
 ## Basic functions/基本功能
@@ -74,7 +75,9 @@ The new user should register at first and then log in.
 
 ## Contact
 halflkaka https://github.com/halflkaka raphael_shi@foxmail.com  
-ldihao https://github.com/ldihao 727260225@qq.com  
+ldihao https://github.com/ldihao ldihao@gmail.com  
+Sylvain-ssy https://github.com/Sylvain-ssy 514092804@qq.com
+
 **We are looking forward to your contribution!**
 
 
