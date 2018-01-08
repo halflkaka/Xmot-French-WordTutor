@@ -59,16 +59,16 @@ class Connect_Thread extends Thread implements Runnable//继承Thread
 ## Login/用户登陆
 Make sure that you have set the right IP address in class **MyTCPSocket**.  
 
-[IP](https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/IP.png)  
-[Wifi](https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/wifi.png)   
+![IP](https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/IP.png)  
+![Wifi](https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/wifi.png)   
 
 The new user should register at first and then log in. 
  
 <img width="500" height="800" src="https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/login.png"/>  
 
 ## Contact
-[halflkaka](https://github.com/halflkaka) raphael_shi@foxmail.com  
-[ldihao](https://github.com/ldihao) 727260225@qq.com  
+halflkaka https://github.com/halflkaka raphael_shi@foxmail.com  
+ldihao https://github.com/ldihao 727260225@qq.com  
 **We are looking forward to your contribution!**
 
 
