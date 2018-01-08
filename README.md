@@ -1,5 +1,5 @@
-#Xmot
-This a simple Android app which helps you look up meanings of french words **offline** and **online**. You can also recite words and store them in your local **notebook**. The conncetion between server and client is based on **TCP**.  
+#Xmot  
+This a simple Android app which helps you look up meanings of french words **offline** and **online**. You can also recite words and store them in your local **notebook**. The conncetion between server and client is based on **TCP**.
 
 ![Welcome UI](https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/WelcomUI.png)
 ##Basic functions/基本功能
