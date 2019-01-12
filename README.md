@@ -28,39 +28,7 @@ Thanks to the [Swpieable-Cards](https://github.com/kikoso/Swipeable-Cards) provi
 Every time ten words randomly selected from the local database will be displayed.  
 #### Normal Recitation Mode/顺序背词
 For the wrong answer, a message of "Wrong Answer" will display. At the same time, it will send a message to the server and store the word in your notebook on server.  
-<pre>class MyClickListener implements View.OnClickListener {
-        private Integer pos;
-        public MyClickListener(Integer Pos){
-            this.pos = Pos;
-        }
-        public void onClick(View v) {
-            Toast.makeText(NormalModeActivity.this, "Wrong Answer!", Toast.LENGTH_SHORT).show();
-            SendWrongWord(this.pos);
-        }
-    }
-</pre>
-<pre>
-class Connect_Thread extends Thread implements Runnable//继承Thread
-    {
-        private String Question;
-        private String Answer;
-        public Connect_Thread(int i){
-            this.Question = Questions.get(i).GetQuestion();
-            this.Answer = Questions.get(i).GetAnswer();
-        }
-        public void run()
-        {
-            try {
-                Log.d("NormalModeActivity", "/store " +"#" + User.get_Username() + "#" + Question + "#" + Answer);
-                socket_helper.getsocket();
-                socket_helper.sendMessage("/store " + "#" + User.get_Username()+ "#" + Question + "#" + Answer);
-            }
-            catch (Exception ex){
-                Log.d("NormalModeActivity", "run: " + ex.getMessage());
-            }
-        }
-    }
-</pre>
+
 <img width="500" height="800" src="https://github.com/halflkaka/Xmot-French-WordTutor/blob/master/Images/normal.png"/>  
 
 ## Login/用户登陆
